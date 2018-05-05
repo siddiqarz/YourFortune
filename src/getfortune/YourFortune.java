@@ -7,14 +7,40 @@ public class YourFortune {
 	public static void main(String[] args) {
 		java.util.Scanner input = new Scanner(System.in);
 		{
+			//asks for firstname
 			System.out.println("Please enter your first name: ");
 			String firstName = input.nextLine();
+			
+			//quit program if input is quit
+			if(firstName.equalsIgnoreCase("quit")){
+				System.out.println("Nobody Likes a Quitter...");
+				System.exit(0);
+			}
 			System.out.println("Hello " + firstName + " let's take a stab at your fortune.");
+			
+			//asks for lastname
 			System.out.println("Please enter your last name: ");
 			String lastName = input.nextLine();
-
+			
+			//quit program if input is quit
+			if(lastName.equalsIgnoreCase("quit")){				
+				System.out.println("Nobody Likes a Quitter...");
+				System.exit(0);
+			}
+			
+			//inputs age as a string
 			System.out.println("How old are you?");
-			int age = input.nextInt();
+			String checkAge = input.nextLine();
+			
+			//Checks if used typed quit
+			if (checkAge.equalsIgnoreCase("quit")){
+				System.out.println("Nobody Likes a Quitter...");
+				System.exit(0);
+			}
+			
+			//converts age of String to an Integer
+			int age = Integer.parseInt(checkAge);
+			
 			String newAge = "";
 			if (age < 16) {
 				System.out.println("Your future is too far away to see, try again when you add an inch or two.");
@@ -24,8 +50,10 @@ public class YourFortune {
 			} else {
 				newAge = "five years";
 			}
+
 			System.out.println("What month were you born in?");
 			int month = 0;
+			
 			boolean birthMonth = false;
 			while (birthMonth == false) {
 				try {
@@ -65,11 +93,10 @@ public class YourFortune {
 				if (color.equalsIgnoreCase("help")) {
 					System.out.println("The colors are: Red, Orange, Yellow, Green, Blue, Indigo or Violet");
 				} else {
-					break;
+					helpColor = true;
 				}
 			}
 			
-
 			switch (color.toLowerCase()) {
 			case "red":
 				color = "Horse and carriage";
