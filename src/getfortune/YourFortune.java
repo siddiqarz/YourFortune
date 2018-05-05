@@ -103,7 +103,7 @@ public class YourFortune {
 		if (numberOfSiblings > 3) {
 			vacationHome = "Dubai";
 		} 
-		else {
+		else 
 			switch (numberOfSiblings) {
 			case 0:
 				vacationHome = "Kenya";
@@ -115,15 +115,15 @@ public class YourFortune {
 				vacationHome = "California";
 				break;
 			default:
-				vacationHome = "Bermuda Triangle";
+				vacationHome = "the Bermuda Triangle";
+			
 			}
-		
 		System.out.println(firstName + " " + lastName + " will retire in " + newAge + " with " + formatter.format(bankBalance)
 						+ " in the bank, a vacation home in " + vacationHome + " and travel by " + color);
 
 		}
 	}
-	}
+	
 
 }
 
