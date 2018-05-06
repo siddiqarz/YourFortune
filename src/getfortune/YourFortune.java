@@ -7,40 +7,40 @@ public class YourFortune {
 	public static void main(String[] args) {
 		java.util.Scanner input = new Scanner(System.in);
 		{
-			//asks for firstname
+			// asks for firstname
 			System.out.println("Please enter your first name: ");
 			String firstName = input.nextLine();
-			
-			//quit program if input is quit
-			if(firstName.equalsIgnoreCase("quit")){
+
+			// quit program if input is quit
+			if (firstName.equalsIgnoreCase("quit")) {
 				System.out.println("Nobody Likes a Quitter...");
 				System.exit(0);
 			}
 			System.out.println("Hello " + firstName + " let's take a stab at your fortune.");
-			
-			//asks for lastname
+
+			// asks for lastname
 			System.out.println("Please enter your last name: ");
 			String lastName = input.nextLine();
-			
-			//quit program if input is quit
-			if(lastName.equalsIgnoreCase("quit")){				
+
+			// quit program if input is quit
+			if (lastName.equalsIgnoreCase("quit")) {
 				System.out.println("Nobody Likes a Quitter...");
 				System.exit(0);
 			}
-			
-			//inputs age as a string
+
+			// inputs age as a string
 			System.out.println("How old are you?");
 			String checkAge = input.nextLine();
-			
-			//Checks if used typed quit
-			if (checkAge.equalsIgnoreCase("quit")){
+
+			// Checks if used typed quit
+			if (checkAge.equalsIgnoreCase("quit")) {
 				System.out.println("Nobody Likes a Quitter...");
 				System.exit(0);
 			}
-			
-			//converts age of String to an Integer
+
+			// converts age of String to an Integer
 			int age = Integer.parseInt(checkAge);
-			
+
 			String newAge = "";
 			if (age < 16) {
 				System.out.println("Your future is too far away to see, try again when you add an inch or two.");
@@ -50,37 +50,44 @@ public class YourFortune {
 			} else {
 				newAge = "five years";
 			}
-
-			System.out.println("What month were you born in?");
 			int month = 0;
-			
-			boolean birthMonth = false;
-			while (birthMonth == false) {
+//			boolean birthMonth = false;
+			while (true) {
+				System.out.println("What month were you born in?");
+				String checkMonth = input.nextLine();
+
 				try {
-					month = input.nextInt();
-					birthMonth = true;
+					month = Integer.parseInt(checkMonth);
+					if (month < 1 || month > 12) {
+						System.out.println("Sure, and I was born on Mars in a spacesuit.");
+						System.out.println("What month were you born in?");
+						month = input.nextInt();
+						break;
+					} else {
+						break;
+					}
+
 				} catch (Exception e) {
-					System.out.println("Please use numbers only.");
-					input.nextLine();
+
+					if (checkMonth.equalsIgnoreCase("quit")) {
+						System.out.println("Nobody likes a quitter...");
+						System.exit(0);
+					} else {
+						System.out.println("Please use numbers only.");
+					}
 				}
+
 			}
-			if (month < 1 || month > 12) {
-				System.out.println("Sure, and I was born on Mars in a spacesuit.");
-				return;
-			}
-			input.nextLine();
+			
 			double bankBalance = 0.00;
 			NumberFormat formatter = NumberFormat.getCurrencyInstance();
 			if (month >= 1 && month < 4) {
 				bankBalance = 3556457.01;
-			} 
-			else if (month >= 4 && month < 7) {
+			} else if (month >= 4 && month < 7) {
 				bankBalance = 10003.45;
-			} 
-			else if (month >= 7 && month < 10) {
+			} else if (month >= 7 && month < 10) {
 				bankBalance = 50.8;
-			} 
-			else {
+			} else {
 				bankBalance = 0.00;
 			}
 
@@ -96,7 +103,7 @@ public class YourFortune {
 					helpColor = true;
 				}
 			}
-			
+
 			switch (color.toLowerCase()) {
 			case "red":
 				color = "Horse and carriage";
@@ -121,36 +128,34 @@ public class YourFortune {
 			default:
 				color = "Donkey";
 			}
-		
-		
-		System.out.println("How many siblings do you have?");
-		int numberOfSiblings = input.nextInt();
-		String vacationHome = "";
-		
-		if (numberOfSiblings > 3) {
-			vacationHome = "Dubai";
-		} 
-		else 
-			switch (numberOfSiblings) {
-			case 0:
-				vacationHome = "Kenya";
-				break;
-			case 1:
-				vacationHome = "Brazil";
-				break;
-			case 2:
-				vacationHome = "California";
-				break;
-			default:
-				vacationHome = "the Bermuda Triangle";
-			
-			}
-		System.out.println(firstName + " " + lastName + " will retire in " + newAge + " with " + formatter.format(bankBalance)
-						+ " in the bank, a vacation home in " + vacationHome + " and travel by " + color);
+
+			System.out.println("How many siblings do you have?");
+			int numberOfSiblings = input.nextInt();
+			String vacationHome = "";
+
+			if (numberOfSiblings > 3) {
+				vacationHome = "Dubai";
+			} else
+				switch (numberOfSiblings) {
+				case 0:
+					vacationHome = "Kenya";
+					break;
+				case 1:
+					vacationHome = "Brazil";
+					break;
+				case 2:
+					vacationHome = "California";
+					break;
+				default:
+					vacationHome = "the Bermuda Triangle";
+
+				}
+			System.out.println(
+					firstName + " " + lastName + " will retire in " + newAge + " with " + formatter.format(bankBalance)
+							+ " in the bank, a vacation home in " + vacationHome + " and travel by " + color);
 
 		}
+		input.close();
 	}
-	
 
 }
-
