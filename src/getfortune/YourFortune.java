@@ -28,30 +28,39 @@ public class YourFortune {
 				System.exit(0);
 			}
 
-			// inputs age as a string
-			System.out.println("How old are you?");
-			String checkAge = input.nextLine();
-
-			// Checks if used typed quit
-			if (checkAge.equalsIgnoreCase("quit")) {
-				System.out.println("Nobody Likes a Quitter...");
-				System.exit(0);
-			}
-
-			// converts age of String to an Integer
-			int age = Integer.parseInt(checkAge);
-
+			int age = 0;
 			String newAge = "";
-			if (age < 16) {
-				System.out.println("Your future is too far away to see, try again when you add an inch or two.");
-				System.exit(0);
-			} else if (age >= 16 && age % 2 == 0) {
-				newAge = "two decades";
-			} else {
-				newAge = "five years";
+			while (true) {
+				System.out.println("How old are you?");
+				String checkAge = input.nextLine();
+
+				try {
+					age = Integer.parseInt(checkAge);
+					if (age < 16) {
+						System.out
+								.println("Your future is too far away to see, try again when you add an inch or two.");
+						System.exit(0);
+					} else if (age >= 16 && age % 2 == 0) {
+						newAge = "two decades";
+					} else {
+						newAge = "five years";
+					}
+					break;
+				}
+
+				catch (Exception e) {
+
+					if (checkAge.equalsIgnoreCase("quit")) {
+						System.out.println("Nobody likes a quitter...");
+						System.exit(0);
+					} else {
+						System.out.println("Please use numbers only.");
+					}
+				}
+
 			}
+
 			int month = 0;
-//			boolean birthMonth = false;
 			while (true) {
 				System.out.println("What month were you born in?");
 				String checkMonth = input.nextLine();
@@ -78,7 +87,7 @@ public class YourFortune {
 				}
 
 			}
-			
+
 			double bankBalance = 0.00;
 			NumberFormat formatter = NumberFormat.getCurrencyInstance();
 			if (month >= 1 && month < 4) {
@@ -155,7 +164,7 @@ public class YourFortune {
 							+ " in the bank, a vacation home in " + vacationHome + " and travel by " + color);
 
 		}
-		input.close();
+input.close();
 	}
 
 }
