@@ -108,7 +108,11 @@ public class YourFortune {
 				color = input.nextLine();
 				if (color.equalsIgnoreCase("help")) {
 					System.out.println("The colors are: Red, Orange, Yellow, Green, Blue, Indigo or Violet");
-				} else {
+				} else if(color.equalsIgnoreCase("quit")) {
+					System.out.println("Nobody likes a quitter...");
+					System.exit(0);
+				}
+				else {
 					helpColor = true;
 				}
 			}
@@ -138,33 +142,50 @@ public class YourFortune {
 				color = "Donkey";
 			}
 
-			System.out.println("How many siblings do you have?");
-			int numberOfSiblings = input.nextInt();
+			
+			int numberOfSiblings = 0;
 			String vacationHome = "";
-
-			if (numberOfSiblings > 3) {
-				vacationHome = "Dubai";
-			} else
-				switch (numberOfSiblings) {
-				case 0:
-					vacationHome = "Kenya";
-					break;
-				case 1:
-					vacationHome = "Brazil";
-					break;
-				case 2:
-					vacationHome = "California";
-					break;
-				default:
-					vacationHome = "the Bermuda Triangle";
-
+			while (true) {
+				System.out.println("How many siblings do you have?");
+				String checkNumberOfSiblings = input.nextLine();
+				
+				try {
+					numberOfSiblings = Integer.parseInt(checkNumberOfSiblings);
+					
+								if (numberOfSiblings > 3) {
+									vacationHome = "Dubai";
+								} else
+									switch (numberOfSiblings) {
+									case 0:
+										vacationHome = "Kenya";
+										break;
+									case 1:
+										vacationHome = "Brazil";
+										break;
+									case 2:
+										vacationHome = "California";
+										break;
+									default:
+										vacationHome = "the Bermuda Triangle";
+									}
+								break;	
 				}
+				catch (Exception e) {
+					if (checkNumberOfSiblings.equalsIgnoreCase("quit")) {
+						System.out.println("Nobody likes a quitter...");
+						System.exit(0);
+					} else {
+						System.out.println("Please use numbers only.");
+						
+					}
+				}
+			}
 			System.out.println(
 					firstName + " " + lastName + " will retire in " + newAge + " with " + formatter.format(bankBalance)
 							+ " in the bank, a vacation home in " + vacationHome + " and travel by " + color);
+			
 
-		}
-input.close();
 	}
-
+		input.close();
+	}
 }
